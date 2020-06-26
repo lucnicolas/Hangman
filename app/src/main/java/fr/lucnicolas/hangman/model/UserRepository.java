@@ -2,10 +2,6 @@ package fr.lucnicolas.hangman.model;
 
 import android.app.Application;
 
-import androidx.lifecycle.LiveData;
-
-import java.util.List;
-
 import fr.lucnicolas.hangman.model.dao.UserDao;
 import fr.lucnicolas.hangman.model.entity.User;
 
@@ -15,7 +11,6 @@ import fr.lucnicolas.hangman.model.entity.User;
 public class UserRepository {
 
     private UserDao mUserDao;
-    private LiveData<List<User>> mAllUsers;
 
     /**
      * Instantiates a new User repository.
@@ -26,7 +21,6 @@ public class UserRepository {
         AppDatabase db = AppDatabase.getInstance(application);
 
         mUserDao = db.userDao();
-        mAllUsers = mUserDao.getAllUsersByMaxScore();
     }
 
     /**
@@ -36,8 +30,8 @@ public class UserRepository {
      *
      * @return the all users
      */
-    public LiveData<List<User>> getAllUsers() {
-        return mAllUsers;
+    public User getUser(String pseudo) {
+        return mUserDao.getUser(pseudo);
     }
 
     /**

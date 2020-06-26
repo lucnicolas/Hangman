@@ -4,9 +4,6 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
-
-import java.util.List;
 
 import fr.lucnicolas.hangman.model.UserRepository;
 import fr.lucnicolas.hangman.model.entity.User;
@@ -18,8 +15,6 @@ public class UserViewModel extends AndroidViewModel {
 
     private UserRepository mRepository;
 
-    private LiveData<List<User>> mAllUsers;
-
     /**
      * Instantiates a new User view model.
      *
@@ -28,7 +23,6 @@ public class UserViewModel extends AndroidViewModel {
     public UserViewModel(@NonNull Application application) {
         super(application);
         mRepository = new UserRepository(application);
-        mAllUsers = mRepository.getAllUsers();
     }
 
     /**
@@ -36,8 +30,8 @@ public class UserViewModel extends AndroidViewModel {
      *
      * @return the all users
      */
-    public LiveData<List<User>> getAllUsers() {
-        return mAllUsers;
+    public User getUser(String pseudo) {
+        return mRepository.getUser(pseudo);
     }
 
     /**
