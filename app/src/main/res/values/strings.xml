@@ -6,4 +6,10 @@
     <string name="votre_proposition">Votre proposition :</string>
     <string name="valider">Valider</string>
     <string name="vous_jouez_en_niveau_X_votre_record_ce_niveau_est_de_Y">Vous jouez en niveau %1$s, votre record à ce niveau est de %2$d</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_word">Add word</string>
+    <string name="ajouter">Ajouter</string>
+    <string name="gestion_du_dictionnaire">Gestion du dictionnaire</string>
+    <string name="champ_vide">Champ vide</string>
 </resources>

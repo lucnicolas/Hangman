@@ -1,11 +1,10 @@
-package fr.lucnicolas.hangman.ui.main;
-
-import androidx.appcompat.app.AppCompatActivity;
+package fr.lucnicolas.hangman.ui;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import fr.lucnicolas.hangman.R;
-import fr.lucnicolas.hangman.ui.main.MainFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_activity);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, MainFragment.newInstance())
+                    .replace(R.id.container, LoginFragment.newInstance())
                     .commitNow();
         }
     }
