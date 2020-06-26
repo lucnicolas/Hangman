@@ -22,7 +22,7 @@ public class UserRepository {
      *
      * @param application the application
      */
-    UserRepository(Application application) {
+    public UserRepository(Application application) {
         AppDatabase db = AppDatabase.getInstance(application);
 
         mUserDao = db.userDao();
@@ -36,7 +36,7 @@ public class UserRepository {
      *
      * @return the all users
      */
-    LiveData<List<User>> getAllUsers() {
+    public LiveData<List<User>> getAllUsers() {
         return mAllUsers;
     }
 
@@ -46,7 +46,7 @@ public class UserRepository {
      *
      * @param user the user
      */
-    void register(final User user) {
+    public void register(final User user) {
         AppDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {

@@ -21,7 +21,7 @@ public class WordRepository {
      *
      * @param application the application
      */
-    WordRepository(Application application) {
+    public WordRepository(Application application) {
         AppDatabase db = AppDatabase.getInstance(application);
         mWordDao = db.wordDao();
         mAllWords = mWordDao.getAlphabetizedWords();
@@ -34,7 +34,7 @@ public class WordRepository {
      *
      * @return the all words
      */
-    LiveData<List<Word>> getAllWords() {
+    public LiveData<List<Word>> getAllWords() {
         return mAllWords;
     }
 
@@ -44,7 +44,7 @@ public class WordRepository {
      *
      * @param word the word
      */
-    void insert(final Word word) {
+    public void insert(final Word word) {
         AppDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {
