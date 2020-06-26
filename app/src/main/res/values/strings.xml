@@ -5,11 +5,16 @@
     <string name="s_identifier_s_inscrire">S\'identifier / s\'inscrire</string>
     <string name="votre_proposition">Votre proposition :</string>
     <string name="valider">Valider</string>
-    <string name="vous_jouez_en_niveau_X_votre_record_ce_niveau_est_de_Y">Vous jouez en niveau %1$s, votre record à ce niveau est de %2$d</string>
+    <string name="vous_jouez_en_niveau_X_votre_record_ce_niveau_est_de_Y">Vous jouez en niveau %1$s, votre record à ce niveau est de %2$d.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_word">Add word</string>
     <string name="ajouter">Ajouter</string>
     <string name="gestion_du_dictionnaire">Gestion du dictionnaire</string>
     <string name="champ_vide">Champ vide</string>
+    <string name="saisir_pseudo">Veuillez saisir votre pseudo</string>
+    <string name="beginner">débutant</string>
+    <string name="average">moyen</string>
+    <string name="confirmed">confirmé</string>
+    <string name="expert">expert</string>
 </resources>

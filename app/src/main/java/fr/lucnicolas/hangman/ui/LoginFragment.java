@@ -18,6 +18,7 @@ import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import fr.lucnicolas.hangman.R;
+import fr.lucnicolas.hangman.model.entity.User;
 import fr.lucnicolas.hangman.viewmodel.UserViewModel;
 
 /**
@@ -27,7 +28,6 @@ import fr.lucnicolas.hangman.viewmodel.UserViewModel;
  */
 public class LoginFragment extends Fragment {
 
-    private Button mButtonLogin;
     private EditText mEditTextPseudo;
 
     private UserViewModel mUserViewModel;
@@ -65,20 +65,24 @@ public class LoginFragment extends Fragment {
 
         mEditTextPseudo = (EditText) view.findViewById(R.id.edit_pseudo);
 
-        mButtonLogin = (Button) view.findViewById(R.id.button_login);
+        Button mButtonLogin = (Button) view.findViewById(R.id.button_login);
         mButtonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String mPseudo = mEditTextPseudo.getText().toString();
                 if (!mPseudo.equals("")) {
+
+                    User user = new User(mPseudo);
+                    mUserViewModel.register(user);
+
                     FragmentManager fragmentManager = getParentFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.container, MenuFragment.newInstance());
+                    fragmentTransaction.replace(R.id.container, MenuFragment.newInstance(user.getPseudo()));
                     // Ensure to return to LoginFragment on clicking back
-                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.disallowAddToBackStack();
                     fragmentTransaction.commit();
                 } else {
-                    Snackbar.make(view, "Champ vide", BaseTransientBottomBar.LENGTH_LONG).show();
+                    Snackbar.make(view, R.string.saisir_pseudo, BaseTransientBottomBar.LENGTH_LONG).show();
                 }
             }
         });
