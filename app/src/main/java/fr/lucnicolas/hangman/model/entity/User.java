@@ -1,7 +1,6 @@
 package fr.lucnicolas.hangman.model.entity;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -14,20 +13,22 @@ public class User {
     @ColumnInfo(name = "pseudo")
     private String mPseudo;
 
-    @Nullable
     @ColumnInfo(name = "maximum_score")
-    private Integer mMaximumScore;
+    private int mMaximumScore;
 
     public User(@NonNull String pseudo) {
         this.mPseudo = pseudo;
-        this.mMaximumScore = null;
     }
 
     public String getPseudo() {
         return this.mPseudo;
     }
 
-    public Integer getMaximumScore() {
+    public int getMaximumScore() {
         return this.mMaximumScore;
+    }
+
+    public void setMaximumScore(int score) {
+        this.mMaximumScore = score;
     }
 }
