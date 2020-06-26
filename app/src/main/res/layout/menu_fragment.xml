@@ -7,14 +7,61 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MainFragment">
 
-    <TextView
-        android:id="@+id/message"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Menu"
+        android:layout_margin="400dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/button_beginner"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Jouer en débutant"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button_average"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Jouer en moyen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_beginner" />
+
+        <Button
+            android:id="@+id/button_confirmed"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Jouer en confirmé"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_average" />
+
+        <Button
+            android:id="@+id/button_expert"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Jouer en expert"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_confirmed" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/button_dictionary"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:text="Gérer le dictionnaire"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/constraint_level" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

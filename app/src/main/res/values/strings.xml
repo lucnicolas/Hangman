@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Hangman</string>
+    <string name="le_mot_de_la_mort">Le mot de la mort</string>
+    <string name="utilisateur">utilisateur</string>
+    <string name="s_identifier_s_inscrire">S\'identifier / s\'inscrire</string>
+    <string name="votre_proposition">Votre proposition :</string>
+    <string name="valider">Valider</string>
+    <string name="vous_jouez_en_niveau_X_votre_record_ce_niveau_est_de_Y">Vous jouez en niveau %1$s, votre record à ce niveau est de %2$d</string>
 </resources>
