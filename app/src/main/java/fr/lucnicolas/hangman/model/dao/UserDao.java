@@ -1,5 +1,6 @@
 package fr.lucnicolas.hangman.model.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -16,6 +17,6 @@ public interface UserDao {
     void register(User user);
 
     @Query("SELECT * FROM user_table WHERE pseudo = :pseudo")
-    User getUser(String pseudo);
+    LiveData<User> getUser(String pseudo);
 
 }

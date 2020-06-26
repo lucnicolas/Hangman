@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 
 import fr.lucnicolas.hangman.model.UserRepository;
 import fr.lucnicolas.hangman.model.entity.User;
@@ -30,7 +31,7 @@ public class UserViewModel extends AndroidViewModel {
      *
      * @return the all users
      */
-    public User getUser(String pseudo) {
+    public LiveData<User> getUser(String pseudo) {
         return mRepository.getUser(pseudo);
     }
 

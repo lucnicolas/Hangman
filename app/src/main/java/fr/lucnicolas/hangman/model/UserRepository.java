@@ -2,6 +2,8 @@ package fr.lucnicolas.hangman.model;
 
 import android.app.Application;
 
+import androidx.lifecycle.LiveData;
+
 import fr.lucnicolas.hangman.model.dao.UserDao;
 import fr.lucnicolas.hangman.model.entity.User;
 
@@ -30,7 +32,7 @@ public class UserRepository {
      *
      * @return the all users
      */
-    public User getUser(String pseudo) {
+    public LiveData<User> getUser(String pseudo) {
         return mUserDao.getUser(pseudo);
     }
 

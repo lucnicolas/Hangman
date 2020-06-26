@@ -13,7 +13,7 @@ public class User {
     @ColumnInfo(name = "pseudo")
     private String mPseudo;
 
-    @ColumnInfo(name = "maximum_score")
+    @ColumnInfo(name = "maximum_score", defaultValue = "0")
     private int mMaximumScore;
 
     public User(@NonNull String pseudo) {
