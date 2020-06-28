@@ -13,8 +13,17 @@ public class User {
     @ColumnInfo(name = "pseudo")
     private String mPseudo;
 
-    @ColumnInfo(name = "maximum_score", defaultValue = "0")
-    private int mMaximumScore;
+    @ColumnInfo(name = "maximum_score_beginner", defaultValue = "0")
+    private int mBeginnerMaximumScore;
+
+    @ColumnInfo(name = "maximum_score_average", defaultValue = "0")
+    private int mAverageMaximumScore;
+
+    @ColumnInfo(name = "maximum_score_confirmed", defaultValue = "0")
+    private int mConfirmedMaximumScore;
+
+    @ColumnInfo(name = "maximum_score_expert", defaultValue = "0")
+    private int mExpertMaximumScore;
 
     public User(@NonNull String pseudo) {
         this.mPseudo = pseudo;
@@ -24,11 +33,35 @@ public class User {
         return this.mPseudo;
     }
 
-    public int getMaximumScore() {
-        return this.mMaximumScore;
+    public int getBeginnerMaximumScore() {
+        return mBeginnerMaximumScore;
     }
 
-    public void setMaximumScore(int score) {
-        this.mMaximumScore = score;
+    public void setBeginnerMaximumScore(int beginnerMaximumScore) {
+        this.mBeginnerMaximumScore = beginnerMaximumScore;
+    }
+
+    public int getAverageMaximumScore() {
+        return mAverageMaximumScore;
+    }
+
+    public void setAverageMaximumScore(int averageMaximumScore) {
+        this.mAverageMaximumScore = averageMaximumScore;
+    }
+
+    public int getConfirmedMaximumScore() {
+        return mConfirmedMaximumScore;
+    }
+
+    public void setConfirmedMaximumScore(int confirmedMaximumScore) {
+        this.mConfirmedMaximumScore = confirmedMaximumScore;
+    }
+
+    public int getExpertMaximumScore() {
+        return mExpertMaximumScore;
+    }
+
+    public void setExpertMaximumScore(int expertMaximumScore) {
+        this.mExpertMaximumScore = expertMaximumScore;
     }
 }

@@ -15,6 +15,11 @@ import fr.lucnicolas.hangman.model.entity.Word;
 public class WordRepository {
     private WordDao mWordDao;
     private LiveData<List<Word>> mAllWords;
+    private LiveData<Word> mBeginnerWord;
+    private LiveData<Word> mAverageWord;
+    private LiveData<Word> mConfirmedWord;
+    private LiveData<Word> mExpertWord;
+
 
     /**
      * Instantiates a new Word repository.
@@ -25,6 +30,10 @@ public class WordRepository {
         AppDatabase db = AppDatabase.getInstance(application);
         mWordDao = db.wordDao();
         mAllWords = mWordDao.getAlphabetizedWords();
+        mBeginnerWord = mWordDao.getBeginnerWord();
+        mAverageWord = mWordDao.getAverageWord();
+        mConfirmedWord = mWordDao.getConfirmedWord();
+        mExpertWord = mWordDao.getExpertWord();
     }
 
     /**
@@ -37,6 +46,43 @@ public class WordRepository {
     public LiveData<List<Word>> getAllWords() {
         return mAllWords;
     }
+
+    /**
+     * Gets beginner word.
+     *
+     * @return the beginner word
+     */
+    public LiveData<Word> getBeginnerWord() {
+        return mBeginnerWord;
+    }
+
+    /**
+     * Gets average word.
+     *
+     * @return the average word
+     */
+    public LiveData<Word> getAverageWord() {
+        return mAverageWord;
+    }
+
+    /**
+     * Gets confirmed word.
+     *
+     * @return the confirmed word
+     */
+    public LiveData<Word> getConfirmedWord() {
+        return mConfirmedWord;
+    }
+
+    /**
+     * Gets expert word.
+     *
+     * @return the expert word
+     */
+    public LiveData<Word> getExpertWord() {
+        return mExpertWord;
+    }
+
 
     /**
      * Insert a new word.

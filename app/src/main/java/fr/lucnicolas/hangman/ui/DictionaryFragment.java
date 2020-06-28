@@ -29,9 +29,7 @@ import fr.lucnicolas.hangman.viewmodel.WordViewModel;
  */
 public class DictionaryFragment extends Fragment {
 
-    private WordViewModel mWordViewModel;
     private DictionaryAdapter mAdapter;
-
 
     /**
      * Use this factory method to create a new instance of
@@ -68,7 +66,7 @@ public class DictionaryFragment extends Fragment {
 
         mAdapter = new DictionaryAdapter(getContext());
 
-        mWordViewModel = new ViewModelProvider(this).get(WordViewModel.class);
+        WordViewModel mWordViewModel = new ViewModelProvider(this).get(WordViewModel.class);
         mWordViewModel.getAllWords().observe(this, new Observer<List<Word>>() {
             @Override
             public void onChanged(@Nullable final List<Word> words) {

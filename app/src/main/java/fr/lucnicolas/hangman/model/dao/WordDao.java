@@ -10,6 +10,9 @@ import java.util.List;
 
 import fr.lucnicolas.hangman.model.entity.Word;
 
+/**
+ * The interface Word dao.
+ */
 @Dao
 public interface WordDao {
 
@@ -23,4 +26,16 @@ public interface WordDao {
 
     @Query("SELECT * from word_table ORDER BY word ASC")
     LiveData<List<Word>> getAlphabetizedWords();
+
+    @Query("SELECT * FROM word_table WHERE LENGTH(word) BETWEEN 2 and 6 ORDER BY random() LIMIT 1")
+    LiveData<Word> getBeginnerWord();
+
+    @Query("SELECT * FROM word_table WHERE LENGTH(word) BETWEEN 4 and 8 ORDER BY random() LIMIT 1")
+    LiveData<Word> getAverageWord();
+
+    @Query("SELECT * FROM word_table WHERE LENGTH(word) BETWEEN 6 and 12 ORDER BY random() LIMIT 1")
+    LiveData<Word> getConfirmedWord();
+
+    @Query("SELECT * FROM word_table WHERE LENGTH(word) BETWEEN 8 and 30 ORDER BY random() LIMIT 1")
+    LiveData<Word> getExpertWord();
 }

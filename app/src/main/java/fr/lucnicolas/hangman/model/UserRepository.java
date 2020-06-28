@@ -30,6 +30,7 @@ public class UserRepository {
      * Room executes all queries on a separate thread.
      * Observed LiveData will notify the observer when the data has changed.
      *
+     * @param pseudo the pseudo
      * @return the all users
      */
     public LiveData<User> getUser(String pseudo) {
@@ -47,6 +48,20 @@ public class UserRepository {
             @Override
             public void run() {
                 mUserDao.register(user);
+            }
+        });
+    }
+
+    /**
+     * Update.
+     *
+     * @param user the user
+     */
+    public void update(final User user) {
+        AppDatabase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mUserDao.update(user);
             }
         });
     }

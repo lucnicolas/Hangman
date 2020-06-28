@@ -29,6 +29,7 @@ public class UserViewModel extends AndroidViewModel {
     /**
      * Gets all users.
      *
+     * @param pseudo the pseudo
      * @return the all users
      */
     public LiveData<User> getUser(String pseudo) {
@@ -42,5 +43,14 @@ public class UserViewModel extends AndroidViewModel {
      */
     public void register(User user) {
         mRepository.register(user);
+    }
+
+    /**
+     * Update.
+     *
+     * @param user the user
+     */
+    public void update(User user) {
+        mRepository.update(user);
     }
 }

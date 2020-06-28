@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.snackbar.BaseTransientBottomBar;
@@ -69,15 +70,21 @@ public class LoginFragment extends Fragment {
         mButtonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mPseudo = mEditTextPseudo.getText().toString();
+                final String mPseudo = mEditTextPseudo.getText().toString();
                 if (!mPseudo.equals("")) {
-
-                    User user = new User(mPseudo);
-                    mUserViewModel.register(user);
+                    mUserViewModel.getUser(mPseudo).observe(getActivity(), new Observer<User>() {
+                        @Override
+                        public void onChanged(User user) {
+                            if (user == null)
+                                user = new User(mPseudo);
+                            mUserViewModel.getUser(mPseudo).removeObservers(getActivity());
+                            mUserViewModel.register(user);
+                        }
+                    });
 
                     FragmentManager fragmentManager = getParentFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.container, MenuFragment.newInstance(user.getPseudo()));
+                    fragmentTransaction.replace(R.id.container, MenuFragment.newInstance(mPseudo));
                     // Ensure to return to LoginFragment on clicking back
                     fragmentTransaction.disallowAddToBackStack();
                     fragmentTransaction.commit();

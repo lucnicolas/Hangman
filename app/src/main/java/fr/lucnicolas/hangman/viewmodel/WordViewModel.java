@@ -17,8 +17,11 @@ import fr.lucnicolas.hangman.model.entity.Word;
 public class WordViewModel extends AndroidViewModel {
 
     private WordRepository mRepository;
-
     private LiveData<List<Word>> mAllWords;
+    private LiveData<Word> mBeginnerWord;
+    private LiveData<Word> mAverageWord;
+    private LiveData<Word> mConfirmedWord;
+    private LiveData<Word> mExpertWord;
 
     /**
      * Instantiates a new Word view model.
@@ -29,6 +32,10 @@ public class WordViewModel extends AndroidViewModel {
         super(application);
         mRepository = new WordRepository(application);
         mAllWords = mRepository.getAllWords();
+        mBeginnerWord = mRepository.getBeginnerWord();
+        mAverageWord = mRepository.getAverageWord();
+        mConfirmedWord = mRepository.getConfirmedWord();
+        mExpertWord = mRepository.getExpertWord();
     }
 
     /**
@@ -38,6 +45,42 @@ public class WordViewModel extends AndroidViewModel {
      */
     public LiveData<List<Word>> getAllWords() {
         return mAllWords;
+    }
+
+    /**
+     * Gets beginner word.
+     *
+     * @return the beginner word
+     */
+    public LiveData<Word> getBeginnerWord() {
+        return mBeginnerWord;
+    }
+
+    /**
+     * Gets average word.
+     *
+     * @return the average word
+     */
+    public LiveData<Word> getAverageWord() {
+        return mAverageWord;
+    }
+
+    /**
+     * Gets confirmed word.
+     *
+     * @return the confirmed word
+     */
+    public LiveData<Word> getConfirmedWord() {
+        return mConfirmedWord;
+    }
+
+    /**
+     * Gets expert word.
+     *
+     * @return the expert word
+     */
+    public LiveData<Word> getExpertWord() {
+        return mExpertWord;
     }
 
     /**

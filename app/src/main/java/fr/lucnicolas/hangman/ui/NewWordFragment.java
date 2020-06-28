@@ -68,6 +68,15 @@ public class NewWordFragment extends Fragment {
 
     }
 
+    private static String capitalizeString(String str) {
+        String retStr = str;
+        try { // We can face index out of bound exception if the string is null
+            retStr = str.substring(0, 1).toUpperCase() + str.substring(1);
+        } catch (Exception ignored) {
+        }
+        return retStr;
+    }
+
     /**
      * Called to have the fragment instantiate its user interface view.
      * This is optional, and non-graphical fragments can return null. This will be called between
@@ -102,7 +111,10 @@ public class NewWordFragment extends Fragment {
                 if (TextUtils.isEmpty(mEditWordView.getText())) {
                     Snackbar.make(view, R.string.champ_vide, BaseTransientBottomBar.LENGTH_LONG);
                 } else {
-                    Word word = new Word(mEditWordView.getText().toString());
+                    String strWord = mEditWordView.getText().toString();
+                    strWord = strWord.toLowerCase();
+                    strWord = capitalizeString(strWord);
+                    Word word = new Word(strWord);
                     mWordViewModel.insert(word);
 
                     FragmentManager fragmentManager = getParentFragmentManager();
@@ -114,8 +126,6 @@ public class NewWordFragment extends Fragment {
                 }
             }
         });
-
-
         return view;
     }
 }

@@ -11,8 +11,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 import fr.lucnicolas.hangman.R;
+import fr.lucnicolas.hangman.model.entity.User;
+import fr.lucnicolas.hangman.viewmodel.UserViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,9 +25,19 @@ import fr.lucnicolas.hangman.R;
 public class MenuFragment extends Fragment {
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_USER = "user";
+    private static final String ARG_USER_PSEUDO = "user_pseudo";
+    private static final String ARG_USER_SCORE_BEGINNER = "user_score_beginner";
+    private static final String ARG_USER_SCORE_AVERAGE = "user_score_average";
+    private static final String ARG_USER_SCORE_CONFIRMED = "user_score_confirmed";
+    private static final String ARG_USER_SCORE_EXPERT = "user_score_expert";
 
-    private String mUser;
+    private String mUserPseudo;
+    private int mUserBeginnerScore;
+    private int mUserAverageScore;
+    private int mUserConfirmedScore;
+    private int mUserExpertScore;
+
+    private UserViewModel mUserViewModel;
 
     /**
      * Use this factory method to create a new instance of
@@ -35,14 +48,26 @@ public class MenuFragment extends Fragment {
     public static MenuFragment newInstance(String userPseudo) {
         MenuFragment fragment = new MenuFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_USER, userPseudo);
+        args.putString(ARG_USER_PSEUDO, userPseudo);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public static MenuFragment newInstance(String pseudo, int beginnerMaximumScore, int averageMaximumScore, int confirmedMaximumScore, int expertMaximumScore) {
+        MenuFragment fragment = new MenuFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_USER_PSEUDO, pseudo);
+        args.putInt(ARG_USER_SCORE_BEGINNER, beginnerMaximumScore);
+        args.putInt(ARG_USER_SCORE_AVERAGE, averageMaximumScore);
+        args.putInt(ARG_USER_SCORE_CONFIRMED, confirmedMaximumScore);
+        args.putInt(ARG_USER_SCORE_EXPERT, expertMaximumScore);
         fragment.setArguments(args);
         return fragment;
     }
 
     /**
      * Called to do initial creation of a fragment.  This is called after
-     * {@link #onAttach(Activity)} and before
+     * {@link #getActivity()} (Activity)} and before
      * {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
      *
      * <p>Note that this can be called while the fragment's activity is
@@ -61,7 +86,21 @@ public class MenuFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mUser = getArguments().getString(ARG_USER);
+            mUserPseudo = getArguments().getString(ARG_USER_PSEUDO);
+
+            mUserBeginnerScore = getArguments().getInt(ARG_USER_SCORE_BEGINNER);
+            mUserAverageScore = getArguments().getInt(ARG_USER_SCORE_AVERAGE);
+            mUserConfirmedScore = getArguments().getInt(ARG_USER_SCORE_CONFIRMED);
+            mUserExpertScore = getArguments().getInt(ARG_USER_SCORE_EXPERT);
+
+            mUserViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+            User user = new User(mUserPseudo);
+            user.setBeginnerMaximumScore(mUserBeginnerScore);
+            user.setAverageMaximumScore(mUserAverageScore);
+            user.setConfirmedMaximumScore(mUserConfirmedScore);
+            user.setExpertMaximumScore(mUserExpertScore);
+            if (mUserBeginnerScore != 0 || mUserAverageScore != 0 || mUserConfirmedScore != 0 || mUserExpertScore != 0)
+                mUserViewModel.update(user);
         }
     }
 
@@ -142,7 +181,7 @@ public class MenuFragment extends Fragment {
     private void transaction_to_game_fragment(int level) {
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.container, GameFragment.newInstance(mUser, level));
+        fragmentTransaction.replace(R.id.container, GameFragment.newInstance(mUserPseudo, level));
         // Ensure to return to MenuFragment on clicking back
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
